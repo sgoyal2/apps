@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FutureForecastComponent } from './future-forecast.component';
+import { CurrentWeatherComponent } from './current-weather.component';
 
-describe('FutureForecastComponent', () => {
-  let component: FutureForecastComponent;
-  let fixture: ComponentFixture<FutureForecastComponent>;
+describe('CurrentWeatherComponent', () => {
+  let component: CurrentWeatherComponent;
+  let fixture: ComponentFixture<CurrentWeatherComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FutureForecastComponent ]
+      declarations: [ CurrentWeatherComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FutureForecastComponent);
+    fixture = TestBed.createComponent(CurrentWeatherComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
