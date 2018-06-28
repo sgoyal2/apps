@@ -23,7 +23,7 @@ interface ICurrentWeatherData {
 @Injectable({
   providedIn: 'root'
 })
-export class WeatherServiceService {
+export class WeatherService{
 
   constructor(private httpClient: HttpClient) { }
 
