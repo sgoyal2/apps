@@ -33,7 +33,11 @@ import { MaterialModule } from './material.module';
     BrowserAnimationsModule,
 
   ],
+<<<<<<< HEAD
   exports:[MaterialModule,MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule,MatFormFieldModule,BrowserAnimationsModule],
+=======
+  exports:[MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule,MatFormFieldModule,BrowserAnimationsModule, MaterialModule],
+>>>>>>> f057825e1da21ed2aacfb9fc397ab27728378edf
   providers: [WeatherService],
   bootstrap: [AppComponent]
 })
