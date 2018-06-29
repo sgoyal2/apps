@@ -15,7 +15,7 @@ export class CitySearchComponent implements OnInit {
   ngOnInit() {
     this.search.valueChanges.pipe(debounceTime(400)).subscribe((searchInput: string) => {
       this.weatherService
-        .getCurrentWeather(searchInput).subscribe(data => this.weatherService.currentWeather.next(data))
-    }
-  }
+        .getCurrentWeather(searchInput).subscribe(data => (this.weatherService.currentWeather.next(data)))
+    })
+  }  
 }  
