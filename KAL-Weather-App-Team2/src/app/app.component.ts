@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <mat-toolbar color="primary">Weather App</mat-toolbar>
     <div>
     <app-city-search></app-city-search>
-      </div>
+    </div>
   </div>  
   `
 })
