@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ICurrentWeather } from '../icurrent-weather';
 
@@ -20,14 +20,31 @@ interface ICurrentWeatherData {
   name: string
 }
 
+export interface IWeatherService {
+  getCurrentWeather(city: string, country: string): Observable<ICurrentWeather>;
+}
+ 
+
+
 @Injectable({
   providedIn: 'root'
 })
-export class WeatherService{
+
+
+export class WeatherService implements IWeatherService{
+
+  currentWeather = new BehaviorSubject<ICurrentWeather>({
+    city: '',
+    country: '',
+    date: Date.now(),
+    image: '',
+    temperature: 32,
+    description: '',
+})
 
   constructor(private httpClient: HttpClient) { }
 
-  getCurrentWeather(city: string, country: string) {
+  getCurrentWeather(city: string, country?: string): Observable<ICurrentWeather> {
     return this.httpClient.get<ICurrentWeatherData>(
       `http://api.openweathermap.org/data/2.5/weather?q` +
       `=${city},${country}&appid=${environment.appID}`
