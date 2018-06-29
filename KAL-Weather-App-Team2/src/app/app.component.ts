@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
   <div style="text-align:center">
-    <h1>Foo Weather App</h1>
+    <h1>Local Weather App</h1>
     <div>Search for your city</div>
     <div>
     <app-city-search></app-city-search></div>
