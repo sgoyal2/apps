@@ -4,13 +4,11 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
   <div style="text-align:center">
-    <h1>Foo Weather App</h1>
-    <div>Search for your city</div>
+    <mat-toolbar color="primary">Weather App</mat-toolbar>
     <div>
-    <app-city-search></app-city-search></div>
-    <h2>Current Weather</h2>
-    <app-current-weather></app-current-weather>  
+    <app-city-search></app-city-search>
+      </div>
   </div>  
-  `,
+  `
 })
 export class AppComponent {}

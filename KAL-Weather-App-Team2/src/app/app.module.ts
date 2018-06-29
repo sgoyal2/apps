@@ -5,10 +5,11 @@ import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 import { WeatherService } from './weather/weather.service';
 import {HttpClientModule} from '@angular/common/http';
-//import {FlexLayoutModule} from '@angular/flex-layout';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule,MatToolbarModule, MatButtonModule, MatIconModule,MatFormFieldModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CitySearchComponent } from './city-search/city-search.component';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -21,10 +22,10 @@ import { CitySearchComponent } from './city-search/city-search.component';
     BrowserModule,
     HttpClientModule,
     MatFormFieldModule,
-    //MaterialModule,
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    //FlexLayoutModule,
+    FlexLayoutModule,
     MatCardModule,
     MatToolbarModule,
     MatButtonModule,
@@ -32,7 +33,7 @@ import { CitySearchComponent } from './city-search/city-search.component';
     BrowserAnimationsModule,
 
   ],
-  exports:[MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule,MatFormFieldModule,BrowserAnimationsModule],
+  exports:[MaterialModule,MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule,MatFormFieldModule,BrowserAnimationsModule],
   providers: [WeatherService],
   bootstrap: [AppComponent]
 })
