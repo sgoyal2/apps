@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  appID: 'a29c9f151391d0cdcd5f982278943e69'
+  appID: 'a29c9f151391d0cdcd5f982278943e69',
+  baseUrl: 'http://',
+  imageUrl: 'http://openweathermap.org/img/w/'
 };
 
 /*
