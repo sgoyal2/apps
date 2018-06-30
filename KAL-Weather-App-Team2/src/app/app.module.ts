@@ -9,6 +9,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { MaterialModule } from './material.module';
+import { ForecastWeatherComponent } from './forecast-weather/forecast-weather.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { MaterialModule } from './material.module';
     AppComponent,
     CurrentWeatherComponent,
     CitySearchComponent,
+    ForecastWeatherComponent
   ],
   imports: [
     BrowserModule,

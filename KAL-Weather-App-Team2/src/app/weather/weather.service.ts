@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ICurrentWeather } from '../icurrent-weather';
+import { IForecastWeather } from '../interfaces/iforecast-weather';
 
 interface ICurrentWeatherData {
   weather: [{
@@ -16,7 +17,7 @@ interface ICurrentWeatherData {
   sys: {
     country: string
   },
-  dt: number,
+  dt: Date,
   name: string
 }
 
@@ -33,13 +34,16 @@ export interface IWeatherService {
 
 export class WeatherService implements IWeatherService{
 
+  forecast :ICurrentWeather [] =[]
+
   currentWeather = new BehaviorSubject<ICurrentWeather>({
     city: '',
     country: '',
-    date: Date.now(),
+    date:new Date(),
     image: '',
     temperature: 32,
-    description: '',
+    description: ''
+
 })
 
   constructor(private httpClient: HttpClient) { }
@@ -58,7 +62,7 @@ export class WeatherService implements IWeatherService{
     return {
       city: data.name,
       country: data.sys.country,
-      date: data.dt * 1000,
+      date:  new Date(),
       image: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
       temperature: this.convertKelvinToFahrenheit(data.main.temp),
       description: data.weather[0].description
@@ -67,5 +71,31 @@ export class WeatherService implements IWeatherService{
   private convertKelvinToFahrenheit(kelvin: number): number {
     return kelvin * 9 / 5 - 459.67
   }
-}
+
+  getForcastWeather(city: string, country: string) {
+    return this.httpClient.get<IForecastWeather>(
+      `${environment.baseUrl}api.openweathermap.org/data/2.5/forecast?q` +
+      `=${city},${country}&units=imperial&appid=${environment.appID}`
+    ).pipe(map(data => this.transformForecastWeather(data)));
+  }
+
+  
+  private transformForecastWeather(data: IForecastWeather): ICurrentWeather [] {
+     
+      for(let i=0; i<data.list.length; i= i+8){
+        const forecastWeather = {city: data.city.name,
+                                country: data.city.country,
+                                description: data.list[i].weather[0].description,
+                                temperature: data.list[i].main.temp,
+                                date: data.list[i].dt_txt,
+                                image: `${environment.imageUrl}${data.list[i].weather[0].icon}.png`,
+         };
+         console.log(forecastWeather);
+         this.forecast.push(forecastWeather);
+        }
+        console.log(this.forecast);
+        return this.forecast;
+    }
+  }
+
  

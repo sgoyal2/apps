@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { WeatherService } from '../weather/weather.service';
 import { debounceTime } from 'rxjs/operators';
