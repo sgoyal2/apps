@@ -105,7 +105,7 @@ export class WeatherService implements IWeatherService{
   
   private transformForecastWeather(data: IForecastWeather): ICurrentWeather [] {
      
-      for(let i=0; i<data.list.length; i= i+8){
+      for(let i=2; i<data.list.length; i= i+8){
         const forecastWeather = {city: data.city.name,
                                 country: data.city.country,
                                 description: data.list[i].weather[0].description,
