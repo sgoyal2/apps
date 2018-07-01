@@ -13,7 +13,7 @@ export class ForecastWeatherComponent implements OnInit {
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
-    this.weatherService.getForcastWeather('', '').subscribe((data) => this.forecastWeathers = data)
+    this.weatherService.getForcastWeather('Seattle', 'US').subscribe((data) => this.forecastWeathers = data)
   }
 
 }
