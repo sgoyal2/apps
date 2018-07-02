@@ -37,12 +37,12 @@ export class WeatherService implements IWeatherService{
   forecast :ICurrentWeather [] =[]
 
   currentWeather = new BehaviorSubject<ICurrentWeather>({
-    city: '',
-    country: '',
+    city: 'seattle',
+    country: 'US',
     date:new Date(),
     image: '',
     temperature: 32,
-    description: ''
+    description: 'This is dummy data!'
 
 })
 
