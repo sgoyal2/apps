@@ -40,7 +40,7 @@ export class WeatherService implements IWeatherService{
     city: 'seattle',
     country: 'US',
     date:new Date(),
-    image: '',
+    image: 'http://mediad.publicbroadcasting.net/p/wpr/files/styles/x_large/public/201601/youth-movie-night-clipart-weather-symbols-icons-clip-art.jpg',
     temperature: 32,
     description: 'This is dummy data!'
 

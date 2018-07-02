@@ -20,8 +20,6 @@ export class CitySearchComponent implements OnInit {
         userInput.length >1 ?userInput[1]: undefined
       )
       .subscribe(data => this.weatherService.currentWeather.next(data))
-      /* this.weatherService
-        .getCurrentWeather(searchInput).subscribe(data => (this.weatherService.currentWeather.next(data))) */
     })
   }  
 }  
