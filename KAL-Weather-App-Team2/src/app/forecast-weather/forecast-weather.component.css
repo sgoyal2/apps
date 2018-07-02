@@ -1,34 +1,27 @@
 .wrapper{
-    width:90%;
-    height: auto;
+    width:auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
   }
+  
+   
  
-  
-  h1{
-    text-align: center;
-    font-family: 'Roboto';
-  }
-  
-  .day{
-    margin:0 2em;
-    font-family: 'Roboto';
-  }
-  
-  img{
-    width:50%;
-    height: auto;
-    margin:0 25%;
-  }
-
-  .description{
-    font-size: 1em;
-    word-wrap: break-word;
-   }
+ 
     
-  .tempM{
-    font-size: 1em;
-   }
-    
+  
+    /*
+  .mat-card{
+    width:fit-content;
+    font-size:10px;
+    margin-left: 40%;
+  }
+  table {
+    width: 100%;
+  
+  }
+  .td{
+    text-align:center;
+  }
+  */
