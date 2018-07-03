@@ -1,11 +1,10 @@
-
-  <div class="wrapper">
+  <mat-card class="wrapper">
     <div class="forecastWeathers" *ngFor="let dayWeather of forecastWeathers">
       <div class="day">
         <h2 class="date">{{dayWeather.date | date: 'MMMMd'}}</h2>
         <img [src] = 'dayWeather.image'>
-        <h2 class="description">{{dayWeather.description}}</h2>
+        <h2 class="description">{{dayWeather.description|titlecase}}</h2>
         <h3 class="tempM">{{dayWeather.temperature}}&deg;</h3>
       </div>
     </div>
-  </div>
+  </mat-card>

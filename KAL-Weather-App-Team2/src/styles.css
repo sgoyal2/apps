@@ -3,7 +3,8 @@
 
 
 body{
-    background:url('https://i.ytimg.com/vi/j9nhecEWMuE/maxresdefault.jpg');
+    background:url('http://www.vectorfree.com/media/vectors/sunny-day-background_1.jpg') no-repeat;
+    background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
     font-style: oblique;
     margin:0px;
@@ -16,7 +17,7 @@ body{
 .mat-card{
     width:400px;
     z-index: 20;  
-    margin:4em;
+    margin:3em;
     color:rgb(116, 105, 219);  
 }
 .card-class{
