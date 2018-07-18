@@ -1,4 +1,4 @@
-<div class="card-class">
+<div *ngIf="current" class="card-class">
 <mat-card class="mat-elevation-z10" @enterLeave>
         <mat-toolbar class="weather-toolbar" color="primary">
           {{current.date|date:'fullDate'}}
