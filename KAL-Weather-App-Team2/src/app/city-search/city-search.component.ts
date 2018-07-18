@@ -23,7 +23,9 @@ export class CitySearchComponent implements OnInit {
         
         }
 
-    })
+    }
+  )
+  
 
   }
 

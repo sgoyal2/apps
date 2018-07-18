@@ -29,6 +29,9 @@ import { ForecastWeatherComponent } from './forecast-weather/forecast-weather.co
     FlexLayoutModule,
     BrowserAnimationsModule,
   ],
+  exports:[
+    FlexLayoutModule,FormsModule,ReactiveFormsModule,BrowserAnimationsModule
+  ],
   providers: [WeatherService],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ICurrentWeather } from '../icurrent-weather';
 import { IForecastWeather } from '../interfaces/iforecast-weather';
+import { IWeatherService } from '../interfaces/iweather-service';
 
 interface ICurrentWeatherData {
   weather: [{
@@ -21,9 +22,6 @@ interface ICurrentWeatherData {
   name: string
 }
 
-export interface IWeatherService {
-  getCurrentWeather(city: string, country?: string): Observable<ICurrentWeather>
-}
 
 @Injectable({
   providedIn: 'root'
