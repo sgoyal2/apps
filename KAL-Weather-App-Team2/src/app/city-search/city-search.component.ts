@@ -1,7 +1,7 @@
- import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { WeatherService } from '../weather/weather.service';
+ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-city-search',
@@ -9,17 +9,26 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./city-search.component.css']
 })
 export class CitySearchComponent implements OnInit {
-  search = new FormControl('')
-  constructor(private weatherService: WeatherService) { }
+  search =new FormControl('', [Validators.minLength(3)])
 
-  ngOnInit() {
-    this.search.valueChanges.pipe(debounceTime(1000)).subscribe((searchInput: string) => {
-      const userInput = searchInput.split(',').map(s=> s.trim())
-      this.weatherService.getCurrentWeather(
-        userInput[0],
-        userInput.length >1 ?userInput[1]: undefined
-      )
-      .subscribe(data => this.weatherService.currentWeather.next(data))
+  @Output() searchEvent=new EventEmitter<string>()
+
+  constructor(){ }
+
+  ngOnInit(){
+    this.search.valueChanges.pipe(debounceTime(1000)).subscribe(
+      (searchInput:string)=>{
+        if(!this.search.invalid){
+        this.searchEvent.emit(searchInput)
+        
+        }
+
     })
-  }  
+
+  }
+
+  getErrorMessage(){
+    return this.search.hasError('minLength')?'Type more than 2 characters for search to work':''
+  }
+  
 }  

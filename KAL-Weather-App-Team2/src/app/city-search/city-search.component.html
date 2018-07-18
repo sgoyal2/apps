@@ -3,16 +3,11 @@
         <mat-icon matPrefix>search</mat-icon>
         <mat-label>Search For the city</mat-label>
         <input matInput placeholder="Enter City" [formControl]="search">
+        <mat-error *ngIf="search.invalid">
+            {{getErrorMessage()}}
+        </mat-error>
 </mat-form-field>
 </form>
-<mat-tab-group>
-    <mat-tab label="Current Weather">
-<app-current-weather></app-current-weather>
-</mat-tab> 
-<mat-tab label="Forecast Weather">
-<app-forecast-weather></app-forecast-weather>
-</mat-tab>
-</mat-tab-group>
 
 
 

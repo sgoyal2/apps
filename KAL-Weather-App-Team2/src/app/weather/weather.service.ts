@@ -22,10 +22,8 @@ interface ICurrentWeatherData {
 }
 
 export interface IWeatherService {
-  getCurrentWeather(city: string, country: string): Observable<ICurrentWeather>
+  getCurrentWeather(city: string, country?: string): Observable<ICurrentWeather>
 }
- 
-
 
 @Injectable({
   providedIn: 'root'
@@ -33,56 +31,41 @@ export interface IWeatherService {
 
 
 export class WeatherService implements IWeatherService{
+  
 
   forecast :ICurrentWeather [] =[]
-
-  currentWeather = new BehaviorSubject<ICurrentWeather>({
-    city: 'seattle',
-    country: 'US',
-    date:new Date(),
-    image: 'http://mediad.publicbroadcasting.net/p/wpr/files/styles/x_large/public/201601/youth-movie-night-clipart-weather-symbols-icons-clip-art.jpg',
-    temperature: 32,
-    description: 'This is dummy data!'
-
-})
 
   constructor(private httpClient: HttpClient) { }
 
   getCurrentWeather(
-    search: string | number,
-    country?: string
-  ): Observable<ICurrentWeather> {
-    let uriParams = ''
-    if (typeof search === 'string') {
-      uriParams = `q=${search}`
-    } else {
-      uriParams = `zip=${search}`
+    search: string|number,
+    country?:string
+    ):Observable<ICurrentWeather>{
+      let uriParams=''
+      if(typeof search==='string'){
+        uriParams=`q=${search}`
+      }
+      else{
+        uriParams=`zip=${search}`
+      }
+      if(country){
+        uriParams=`${uriParams},${country}`
+      }
+      return this.getCurrentWeatherHelper(uriParams);
     }
 
-    if (country) {
-      uriParams = `${uriParams},${country}`
-    }
 
-    return this.getCurrentWeatherHelper(uriParams)
-  }
-
-
-  private getCurrentWeatherHelper(uriParams: string): Observable<ICurrentWeather> {
-    return this.httpClient.get<ICurrentWeatherData>(
-      `http://api.openweathermap.org/data/2.5/weather?` +
+    private getCurrentWeatherHelper(uriParams:string):Observable<ICurrentWeather> {
+      return this.httpClient
+      .get<ICurrentWeatherData>(
+        `http://api.openweathermap.org/data/2.5/weather?` +
       `${uriParams}&appid=${environment.appID}`
-    ).pipe(
-      map(data =>
-        this.transformToICurrentWeather(data)
       )
-    )
-  }
+      .pipe(map(data=>this.transformToICurrentWeather(data)));
+    }
 
-  
-
-
-  private transformToICurrentWeather(data: ICurrentWeatherData): ICurrentWeather {
-    return {
+    private transformToICurrentWeather(data: ICurrentWeatherData): ICurrentWeather {
+      return {
       city: data.name,
       country: data.sys.country,
       date:  new Date(),
@@ -95,6 +78,7 @@ export class WeatherService implements IWeatherService{
     return kelvin * 9 / 5 - 459.67
   }
 
+  
   getForcastWeather(city: string, country: string) {
     return this.httpClient.get<IForecastWeather>(
       `${environment.baseUrl}api.openweathermap.org/data/2.5/forecast?q` +
@@ -113,10 +97,10 @@ export class WeatherService implements IWeatherService{
                                 date: data.list[i].dt_txt,
                                 image: `${environment.imageUrl}${data.list[i].weather[0].icon}.png`,
          };
-         console.log(forecastWeather);
+         //console.log(forecastWeather);
          this.forecast.push(forecastWeather);
         }
-        console.log(this.forecast);
+        //console.log(this.forecast);
         return this.forecast;
     }
   }
