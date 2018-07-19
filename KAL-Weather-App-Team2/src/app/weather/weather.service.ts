@@ -31,7 +31,7 @@ interface ICurrentWeatherData {
 export class WeatherService implements IWeatherService{
   
 
-  forecast :ICurrentWeather [] =[]
+  forecast=[]
 
   constructor(private httpClient: HttpClient) { }
 
@@ -76,17 +76,33 @@ export class WeatherService implements IWeatherService{
     return kelvin * 9 / 5 - 459.67
   }
 
-  
-  getForcastWeather(city: string, country: string) {
-    return this.httpClient.get<IForecastWeather>(
-      `${environment.baseUrl}api.openweathermap.org/data/2.5/forecast?q` +
-      `=${city},${country}&units=imperial&appid=${environment.appID}`
-    ).pipe(map(data => this.transformForecastWeather(data)));
-  }
+  getForcastWeather(search:string|number,
+                    country?:string):Observable<ICurrentWeather[]>{
+                      let uriParams=''
+      if(typeof search==='string'){
+        uriParams=`q=${search}`
+      }
+      else{
+        uriParams=`zip=${search}`
+      }
+      if(country){
+        uriParams=`${uriParams},${country}`
+      }
+      return this.getForcastWeatherHelper(uriParams);
+    
+                    }
 
+      private getForcastWeatherHelper(uriParams:string):Observable<ICurrentWeather[]>{
+        return this.httpClient.get<IForecastWeather>(
+          `${environment.baseUrl}api.openweathermap.org/data/2.5/forecast?` +
+          `${uriParams}&units=imperial&appid=${environment.appID}`
+        ).pipe(map(data => this.transformForecastWeather(data)));
+      }
   
+
   private transformForecastWeather(data: IForecastWeather): ICurrentWeather [] {
-     
+        
+      this.forecast=[]
       for(let i=2; i<data.list.length; i= i+8){
         const forecastWeather = {city: data.city.name,
                                 country: data.city.country,
@@ -96,10 +112,11 @@ export class WeatherService implements IWeatherService{
                                 image: `${environment.imageUrl}${data.list[i].weather[0].icon}.png`,
          };
          //console.log(forecastWeather);
+         //console.log(this.forecast)
          this.forecast.push(forecastWeather);
         }
-        //console.log(this.forecast);
-        return this.forecast;
+      //console.log(this.forecast);
+       return this.forecast;
     }
   }
 

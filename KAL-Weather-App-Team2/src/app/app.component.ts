@@ -14,7 +14,7 @@ import { WeatherService } from './weather/weather.service';
     <app-current-weather [current]="currentWeather"></app-current-weather>
     </mat-tab> 
     <mat-tab label="Forecast Weather">
-    <app-forecast-weather></app-forecast-weather>
+    <app-forecast-weather [forecast]="forecast"></app-forecast-weather>
     </mat-tab>
     </mat-tab-group>
     </div>
@@ -23,6 +23,7 @@ import { WeatherService } from './weather/weather.service';
 })
 export class AppComponent {
   currentWeather:ICurrentWeather
+  forecast:ICurrentWeather[]
   constructor(private weatherService:WeatherService){}
   doSearch(searchInput){
     const userInput=searchInput.split(',').map(s=>s.trim())
@@ -30,6 +31,14 @@ export class AppComponent {
           userInput[0],
           userInput.length>1?userInput[1]:undefined
         )
-        .subscribe(data=>this.currentWeather=data);
+        .subscribe(data=>this.currentWeather=data)
+
+        this.weatherService.getForcastWeather(
+          userInput[0],
+          userInput.length>1?userInput[1]:undefined
+        )
+        .subscribe(data=>this.forecast=data)
+        
   }
+ 
 }
