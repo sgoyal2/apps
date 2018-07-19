@@ -9,8 +9,8 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./city-search.component.css']
 })
 export class CitySearchComponent implements OnInit {
-  search =new FormControl('', [Validators.minLength(3)])
-
+  search =new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])
+  )
   @Output() searchEvent=new EventEmitter<string>()
 
   constructor(){ }
@@ -20,8 +20,7 @@ export class CitySearchComponent implements OnInit {
       (searchInput:string)=>{
         if(!this.search.invalid){
         this.searchEvent.emit(searchInput)
-        
-        }
+         }
 
     }
   )
