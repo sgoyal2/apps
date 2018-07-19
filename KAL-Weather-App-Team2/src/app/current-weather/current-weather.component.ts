@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ICurrentWeather } from '../icurrent-weather';
+import { ICurrentWeather } from '../interfaces/icurrent-weather';
 import { WeatherService } from '../weather/weather.service';
 import {
   trigger,
@@ -38,5 +38,4 @@ export class CurrentWeatherComponent implements OnInit {
   ngOnInit() {
     this.weatherService.getCurrentWeather('Seattle','US').subscribe(data => (this.current = data))
   }
-
 }

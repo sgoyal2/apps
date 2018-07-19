@@ -1,6 +1,5 @@
-import { ICurrentWeather } from "../icurrent-weather";
+import { ICurrentWeather } from "./icurrent-weather";
 import { Observable } from "rxjs";
-
 
 export interface IWeatherService{
   getCurrentWeather(city:string|number,country:string):Observable<ICurrentWeather>

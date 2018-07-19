@@ -1,7 +1,6 @@
 import { IWeatherService } from "../interfaces/iweather-service";
-import { ICurrentWeather } from "../icurrent-weather";
+import { ICurrentWeather } from "../interfaces/icurrent-weather";
 import { Observable, of } from "rxjs";
-
 
 export class WeatherServiceFake implements IWeatherService{
   private fakeWeather:ICurrentWeather={
@@ -11,14 +10,13 @@ export class WeatherServiceFake implements IWeatherService{
     image:'',
     temperature:200.34,
     description:'Sunny',
-
   }
+  
   public getCurrentWeather(city:string|number,country:string):Observable<ICurrentWeather>{
     return of(this.fakeWeather)
-
   }
+
   public getForcastWeather(city:string|number,country:string):Observable<ICurrentWeather[]>{
     return of([this.fakeWeather])
-
   }
 }

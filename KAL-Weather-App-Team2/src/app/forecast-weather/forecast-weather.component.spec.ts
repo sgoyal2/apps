@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ForecastWeatherComponent } from './forecast-weather.component';
 import { MaterialModule } from '../material.module';
-import { WeatherService } from '../weather/weather.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ForecastWeatherComponent', () => {

@@ -1,7 +1,6 @@
- import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-city-search',
@@ -20,12 +19,9 @@ export class CitySearchComponent implements OnInit {
       (searchInput:string)=>{
         if(!this.search.invalid){
         this.searchEvent.emit(searchInput)
-         }
-
-    }
-  )
-  
-
+        }
+      }
+    )
   }
 
   getErrorMessage(){

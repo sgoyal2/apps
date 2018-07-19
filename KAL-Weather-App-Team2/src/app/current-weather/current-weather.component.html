@@ -1,16 +1,18 @@
 <div *ngIf="current" class="card-class">
-<mat-card class="mat-elevation-z10" @enterLeave>
-        <mat-toolbar class="weather-toolbar" color="primary">
-          {{current.date|date:'fullDate'}}
-        </mat-toolbar>
-    	<mat-card-content class="class-content">
-        	<div>
-            	<span>{{current.city|uppercase}}, {{current.country}}</span>
-          	</div>
-          	<div>
-             	<span>{{current.temperature |number:'1.0-0'}}℉</span>
-           		<div><img [src]='current.image' height="100" width="100"></div>{{current.description|titlecase}}
-           </div>
-    	</mat-card-content>
-</mat-card>
-  </div>
+	<mat-card class="mat-elevation-z10" @enterLeave>
+		<mat-toolbar class="weather-toolbar" color="primary">
+			{{current.date|date:'EEEE d MMMM y'}}
+		</mat-toolbar>
+		<mat-card-content class="class-content">
+			<div>
+				<span>{{current.city|uppercase}}, {{current.country}}</span>
+			</div>
+			<div>
+				<span>{{current.temperature |number:'1.0-0'}} ℉</span>
+				<div>
+					<img [src]='current.image' height="100" width="100">
+				</div>{{current.description|titlecase}}
+			</div>
+		</mat-card-content>
+	</mat-card>
+</div>

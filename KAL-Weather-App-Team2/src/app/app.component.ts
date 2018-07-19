@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ICurrentWeather } from './icurrent-weather';
-import { WeatherService } from './weather/weather.service';
+import { Component } from "@angular/core";
+import { ICurrentWeather } from "./interfaces/icurrent-weather";
+import { WeatherService } from "./weather/weather.service";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   template: `
   <div style="text-align:center">
     <mat-toolbar color="primary">Weather App</mat-toolbar>
@@ -22,23 +22,25 @@ import { WeatherService } from './weather/weather.service';
   `
 })
 export class AppComponent {
-  currentWeather:ICurrentWeather
-  forecast:ICurrentWeather[]
-  constructor(private weatherService:WeatherService){}
-  doSearch(searchInput){
-    const userInput=searchInput.split(',').map(s=>s.trim())
-        this.weatherService.getCurrentWeather(
-          userInput[0],
-          userInput.length>1?userInput[1]:undefined
-        )
-        .subscribe(data=>this.currentWeather=data)
+  currentWeather: ICurrentWeather;
+  forecast: ICurrentWeather[];
 
-        this.weatherService.getForcastWeather(
-          userInput[0],
-          userInput.length>1?userInput[1]:undefined
-        )
-        .subscribe(data=>this.forecast=data)
-        
+  constructor(private weatherService: WeatherService) {}
+  
+  doSearch(searchInput) {
+    const userInput = searchInput.split(",").map(s => s.trim());
+    this.weatherService
+      .getCurrentWeather(
+        userInput[0],
+        userInput.length > 1 ? userInput[1] : undefined
+      )
+      .subscribe(data => (this.currentWeather = data));
+
+    this.weatherService
+      .getForcastWeather(
+        userInput[0],
+        userInput.length > 1 ? userInput[1] : undefined
+      )
+      .subscribe(data => (this.forecast = data));
   }
- 
 }
