@@ -13,7 +13,7 @@ export class ForecastWeatherComponent implements OnInit {
 
   ngOnInit() {
     this.weatherService
-      .getForcastWeather("Seattle", "US")
+      .getForecastWeather("Seattle", "US")
       .subscribe(data => (this.forecast = data));
   }
 }

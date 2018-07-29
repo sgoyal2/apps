@@ -34,7 +34,7 @@ export class AppComponent {
       .subscribe(data => (this.currentWeather = data));
 
     this.weatherService
-      .getForcastWeather(userInput[0],userInput.length > 1 ? userInput[1] : undefined)
+      .getForecastWeather(userInput[0],userInput.length > 1 ? userInput[1] : undefined)
       .subscribe(data => (this.forecast = data));
   }
 }

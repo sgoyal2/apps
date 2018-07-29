@@ -69,7 +69,7 @@ export class WeatherService implements IWeatherService {
     return (kelvin * 9) / 5 - 459.67;
   }
 
-  getForcastWeather(search: string | number,country?: string): Observable<ICurrentWeather[]> {
+  getForecastWeather(search: string | number,country?: string): Observable<ICurrentWeather[]> {
     let uriParams = "";
     if (typeof search === "string") {
       uriParams = `q=${search}`;
@@ -79,10 +79,10 @@ export class WeatherService implements IWeatherService {
     if (country) {
       uriParams = `${uriParams},${country}`;
     }
-    return this.getForcastWeatherHelper(uriParams);
+    return this.getForecastWeatherHelper(uriParams);
   }
 
-  private getForcastWeatherHelper(uriParams: string): Observable<ICurrentWeather[]> {
+  private getForecastWeatherHelper(uriParams: string): Observable<ICurrentWeather[]> {
     return this.httpClient
       .get<IForecastWeather>(
         `${environment.baseUrl}api.openweathermap.org/data/2.5/forecast?` +
