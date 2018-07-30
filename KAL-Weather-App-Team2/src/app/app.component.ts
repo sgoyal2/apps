@@ -31,10 +31,16 @@ export class AppComponent {
     const userInput = searchInput.split(",").map(s => s.trim());
     this.weatherService
       .getCurrentWeather(userInput[0], userInput.length > 1 ? userInput[1] : undefined)
-      .subscribe(data => (this.currentWeather = data));
+      .subscribe(
+        data => (this.currentWeather = data),
+        error => alert("Error: Invalid City")
+      );
 
     this.weatherService
       .getForecastWeather(userInput[0],userInput.length > 1 ? userInput[1] : undefined)
-      .subscribe(data => (this.forecast = data));
+      .subscribe(
+        data => (this.forecast = data),
+        error => {}
+      );
   }
 }
