@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+//Creating user schema
 const userSchema = new Schema({
-    name: {
+    username: {
         type: String,
         required: true
     },
@@ -15,9 +17,11 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    avatar: {
-        
+    avatar:{
+        type:String,
+        required:false
     }
     
+});
 
-})
+module.exports=User=mongoose.model('users',userSchema);
