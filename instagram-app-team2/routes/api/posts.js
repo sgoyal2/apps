@@ -10,11 +10,7 @@ const Profile = require('../../models/Profile');
 
 //Validation
 const validatePostInput = require("../../validations/post");
-
-//@route GET api/posts/test
-//@desc Tests post route
-//@access Public
-router.get("/test", (req, res) => res.json({ msg: "Posts works" }));
+const validateCommentInput = require("../../validations/comment");
 
 //@route GET api/posts
 //@desc Get post
@@ -86,12 +82,12 @@ router.delete(
   }
 );
 
-//@route POST api/posts/likes/:id
+//@route POST api/posts/like/:id
 //@desc Like post 
 //@access Private
 
 router.post(
-  "like/:id",
+  "/like/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
@@ -142,12 +138,12 @@ router.post(
 
 // @route   POST api/posts/comment/:id
 // @desc    Add comment to post
-// @access  Private
+// @access  Private 
 router.post(
   '/comment/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
+    const { errors, isValid } = validateCommentInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
     }
