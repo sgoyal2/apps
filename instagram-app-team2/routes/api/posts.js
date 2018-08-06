@@ -49,7 +49,7 @@ router.post(
     const newPost = new Post({
       image: req.body.image,
       caption: req.body.caption,
-      username: req.body.username,
+      //username: req.body.username,
       avatar: req.body.avatar,
       user: req.user.id
     });

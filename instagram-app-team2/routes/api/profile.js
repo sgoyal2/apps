@@ -103,7 +103,7 @@ router.post('/', passport.authenticate('jwt',{session: false}),
 router.get('/user/:user_id', (req, res) =>{
 
     Profile.findOne({user:req.params.user_id})
-    .populate('user', ['username', 'email', 'avatar'])
+    .populate('user', ['handle', 'full_name', 'email', 'avatar'])
     .then(profile =>{
         if(!profile){
             errors = 'Profile not exist for this user';
@@ -121,7 +121,7 @@ router.get('/user/:user_id', (req, res) =>{
 router.get('/handle/:handle_id', (req, res) =>{
 
     Profile.findOne({handle: req.params.handle_id})
-    .populate('user', ['username', 'email', 'avatar'])
+    .populate('user', ['full_name', 'email', 'avatar'])
     .then(profile =>{
         if(!profile){
             errors = 'Profile not exist for this handle';
@@ -139,7 +139,7 @@ router.get('/all', (req, res) => {
     const errors = {};
   
     Profile.find()
-      .populate('user', ['username', 'email', 'avatar'])
+      .populate('user', ['handle', 'full_name', 'email', 'avatar'])
       .then(profiles => {
         if (!profiles) {
           errors.noprofile = 'There are no profiles';
