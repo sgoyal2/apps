@@ -45,7 +45,7 @@ router.post("/login", (req, res) => {
       if (isSame) {
         const payload = {
           id: user.id,
-          name: user.username,
+          handle: user.handle,
           avatar: user.avatar
         };
 
@@ -90,7 +90,8 @@ router.post("/register", (req, res) => {
       });
 
       const newUser = new User({
-        username: req.body.username,
+        full_name:req.body.full_name,
+        handle: req.body.handle,
         email: req.body.email,
         password: req.body.password
       });

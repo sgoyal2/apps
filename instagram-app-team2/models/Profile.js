@@ -7,11 +7,11 @@ const ProfileSchema = new Schema({
         ref: 'users',
         required: true
     },
-    username: {
+    /*username: {
         type: String,
         required: true,
         max: 40
-      },
+    },*/
       website: {
           type: String
       },
