@@ -18,7 +18,7 @@ router.get(
   (req, res) => {
     res.json({
       id: req.user.id,
-      username: req.user.username,
+      handle: req.user.handle,
       email: req.user.email
     });
   }
@@ -90,7 +90,7 @@ router.post("/register", (req, res) => {
       });
 
       const newUser = new User({
-        full_name:req.body.full_name,
+        fullName:req.body.fullName,
         handle: req.body.handle,
         email: req.body.email,
         password: req.body.password

@@ -49,7 +49,7 @@ router.post(
     const newPost = new Post({
       image: req.body.image,
       caption: req.body.caption,
-      //username: req.body.username,
+      handle: req.body.handle,
       avatar: req.body.avatar,
       user: req.user.id
     });
@@ -152,7 +152,7 @@ router.post(
       .then(post => {
         const newComment = {
           text: req.body.text,
-          name: req.body.name,
+          handle: req.body.handle,
           avatar: req.body.avatar,
           user: req.user.id
         };

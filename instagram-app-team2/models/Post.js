@@ -6,9 +6,10 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    /*username: {
+    //retain post by handle/avatar in event user deletes their profile
+    handle: {
         type: String
-    },*/
+    },
     avatar: {
         type: String
     },
@@ -35,7 +36,7 @@ const PostSchema = new Schema({
             type: String,
             required: true
         },
-        username: {
+        handle: {
             type: String
         },
         avatar: {
