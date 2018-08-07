@@ -7,7 +7,7 @@ module.exports = function validateCommentInput(data) {
   data.text = !isEmpty(data.text) ? data.text : '';
 
   if (!Validator.isLength(data.text, { min: 2, max: 300 })) {
-    errors.text = 'Comment must be between 10 and 300 characters';
+    errors.text = 'Comment must be between 2 and 300 characters';
   }
 
   if (Validator.isEmpty(data.text)) {

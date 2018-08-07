@@ -44,7 +44,8 @@ router.post(
     const { errors, isValid } = validatePostInput(req.body);
     if (!isValid) {
       res.status(400).json(errors);
-    }
+      return;
+    } 
 
     const newPost = new Post({
       image: req.body.image,
@@ -57,8 +58,8 @@ router.post(
     newPost.save()
     .then(post => res.json(post))
     .catch(err => res.status(400).json({ postnotsaved: "Post cannot be saved" }))
-  }
-);
+  
+  });
 
 //@route DELETE api/posts/:id
 //@desc Delete post
@@ -74,6 +75,7 @@ router.delete(
       .then(post => {
         if(post.user.toString() != req.user.id) {
           res.status(401).json({unauthorized: "User not authorized"})
+          return;
         }
         post.remove().then(()=> res.json({success: true}));
       })
@@ -95,7 +97,8 @@ router.post(
       Post.findById(req.params.id)
       .then(post => {
         if (post.likes.filter(like => like.user.toString() === req.user.id).length >0){
-          res.status(400).json({ alreadyliked: "User already liked this post" });
+          return res.status(400).json({ alreadyliked: "User already liked this post" });
+          
         }
 
         post.likes.unshift({ user: req.user.id });

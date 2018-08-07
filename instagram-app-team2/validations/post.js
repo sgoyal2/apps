@@ -16,7 +16,7 @@ module.exports = function ValidatePostInput(data) {
   }
 
   if (!Validator.isLength(data.caption, { min: 2, max: 300 })) {
-    errors.caption = "Caption must be between 2and 300 characters";
+    errors.caption = "Caption must be between 2 and 300 characters";
   }
 
   if (Validator.isEmpty(data.caption)) {
