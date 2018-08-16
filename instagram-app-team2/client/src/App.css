@@ -1,0 +1,16 @@
+img {
+    width: 50%;
+    margin-right: auto;
+    padding-left: 10%;
+}
+
+footer {
+text-align: center;
+  color: lightgrey;
+  min-height: 1%;
+
+}   
+
+.register {
+  margin-right: 10%;
+}
