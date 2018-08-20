@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor() {
@@ -41,7 +41,7 @@ class Login extends Component {
                     className="form-control"
                     name="email"
                     placeholder="Email Address"
-                    value={this.state.value}
+                    value={this.state.email}
                     onChange={this.onChange.bind(this)}
                   />
                 </div>
@@ -51,7 +51,7 @@ class Login extends Component {
                     className="form-control"
                     name="password"
                     placeholder="Password"
-                    value={this.state.value}
+                    value={this.state.password}
                     onChange={this.onChange.bind(this)}
                   />
                   <p className="text-center">
