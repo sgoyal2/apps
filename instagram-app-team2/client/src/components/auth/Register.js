@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authAction";
 
+import TextFieldGroup from "../common/TextFieldGroup";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import home from "../../img/home.png";
@@ -67,71 +67,44 @@ class Register extends Component {
                   Sign up to see photos and videos from your friends.
                 </p>
                 <form noValidate onSubmit={this.onSubmit}>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className={classnames("form-control", {
-                        "is-invalid": errors.fullName
-                      })}
-                      placeholder="Full Name"
-                      name="fullName"
-                      value={this.state.name}
-                      onChange={this.onChange.bind(this)}
-                      required
-                    />
-                    {errors.fullName && (
-                      <div className="invalid-feedback">{errors.fullName}</div>
-                    )}
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      className={classnames("form-control", {
-                        "is-invalid": errors.email
-                      })}
-                      placeholder="Email Address"
-                      name="email"
-                      value={this.state.email}
-                      onChange={this.onChange.bind(this)}
-                    />
-                    {errors.email && (
-                      <div className="invalid-feedback">{errors.email}</div>
-                    )}
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      className={classnames("form-control", {
-                        "is-invalid": errors.password
-                      })}
-                      placeholder="Password"
-                      name="password"
-                      value={this.state.password}
-                      onChange={this.onChange.bind(this)}
-                    />
-                    {errors.password && (
-                      <div className="invalid-feedback">{errors.password}</div>
-                    )}
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      className={classnames("form-control", {
-                        "is-invalid": errors.password2
-                      })}
-                      placeholder="Confirm Password"
-                      name="password2"
-                      value={this.state.password2}
-                      onChange={this.onChange.bind(this)}
-                    />
-                    {errors.password2 && (
-                      <div className="invalid-feedback">{errors.password2}</div>
-                    )}
-                  </div>
+                  <TextFieldGroup
+                    placeholder="Full Name"
+                    name="fullName"
+                    value={this.state.name}
+                    onChange={this.onChange}
+                    error={errors.name}
+                  />
+
+                  <TextFieldGroup
+                    type="email"
+                    placeholder="Email Address"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    error={errors.email}
+                  />
+
+                  <TextFieldGroup
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    errors={errors.password}
+                  />
+
+                  <TextFieldGroup
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="password2"
+                    value={this.state.password2}
+                    onChange={this.onChange}
+                    errors={errors.password2}
+                  />
+
                   <input
                     type="submit"
                     className="btn btn-info btn-block mt-4"
-                    value="Sign up"
                   />
                 </form>
                 <p className="text-center">
@@ -149,7 +122,7 @@ class Register extends Component {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.isRequired
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -157,7 +130,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  { registerUser }
-)(withRouter(Register));
+export default connect(mapStateToProps, {registerUser})(withRouter(Register));
