@@ -90,7 +90,7 @@ class Register extends Component {
                     name="password"
                     value={this.state.password}
                     onChange={this.onChange}
-                    errors={errors.password}
+                    error={errors.password}
                   />
 
                   <TextFieldGroup
@@ -99,7 +99,7 @@ class Register extends Component {
                     name="password2"
                     value={this.state.password2}
                     onChange={this.onChange}
-                    errors={errors.password2}
+                    error={errors.password2}
                   />
 
                   <input

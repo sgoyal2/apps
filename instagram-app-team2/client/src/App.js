@@ -10,6 +10,8 @@ import Footer from "./components/layout/Footer";
 import Login from "./components/auth/Login";
 
 import "./App.css";
+import Posts from "./components/posts/Posts";
+
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -40,6 +42,8 @@ class App extends Component {
           <div className="App">
             <Route exact path="/" component={Register} />
             <Route exact path="/Login" component={Login} />
+        
+            <Route exact path="/Feed" component={Posts} />
             <Footer />
           </div>
         </Router>
