@@ -28,11 +28,12 @@ class PostForm extends Component {
 
     const newPost = {
       caption: this.state.caption,
+      image: this.state.image,
       handle: user.handle,
       avatar: user.avatar
     };
     this.props.addPost(newPost);
-    this.setState({ caption: "" });
+    this.setState({ caption: '', image:'' });
   }
 
   onChange(e) {
@@ -50,7 +51,7 @@ class PostForm extends Component {
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextFieldGroup
-                  placeholder="Create a post"
+                  placeholder="Write a caption"
                   name="caption"
                   value={this.state.caption}
                   onChange={this.onChange}
@@ -80,12 +81,10 @@ PostForm.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
+
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  { addPost }
-)(PostForm);
+export default connect(mapStateToProps, { addPost })(PostForm);
