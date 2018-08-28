@@ -41,9 +41,10 @@ findUserLike(likes) {
               />
             </a>
             <br />
-            <p className="text-center">{post.fullName}</p>
+            
+            <p className="text-center font-weight-bold">{post.fullName}</p>
           </div>
-          <div className="col-md-10">
+         <div className="col-md-10">
             <p className="lead">
               <img src={post.image} />
             </p>
