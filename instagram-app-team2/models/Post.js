@@ -7,7 +7,7 @@ const PostSchema = new Schema({
         ref: 'users'
     },
     //retain post by handle/avatar in event user deletes their profile
-    handle: {
+    fullName: {
         type: String
     },
     avatar: {
