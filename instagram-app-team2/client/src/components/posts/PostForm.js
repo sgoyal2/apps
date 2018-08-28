@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TextFieldGroup from "../common/TextFieldGroup";
 import { addPost } from "../../actions/postAction";
 
@@ -24,14 +24,15 @@ class PostForm extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const { user } = this.props.auth;
+    const  {user}  = this.props.auth;
 
     const newPost = {
       caption: this.state.caption,
       image: this.state.image,
-      handle: user.handle,
+      fullName: user.fullName,
       avatar: user.avatar
     };
+
     this.props.addPost(newPost);
     this.setState({ caption: '', image:'' });
   }

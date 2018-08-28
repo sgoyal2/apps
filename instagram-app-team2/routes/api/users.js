@@ -44,7 +44,8 @@ router.post("/login", (req, res) => {
       if (isSame) {
         const payload = {
           id: user.id,
-          avatar: user.avatar
+          avatar: user.avatar,
+          fullName: user.fullName
         };
 
         jwt.sign(
@@ -53,6 +54,7 @@ router.post("/login", (req, res) => {
           { expiresIn: 7200 },
           (err, token) => {
             res.json({
+              payload,
               success: true,
               token: "Bearer " + token
             });

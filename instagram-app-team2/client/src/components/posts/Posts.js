@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import PostForm from './PostForm';
 import { getPosts} from '../../actions/postAction';
 import PostFeed from './PostFeed';
+import PostForm from './PostForm';
 
 class Posts extends Component {
   componentDidMount() {
@@ -34,4 +34,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getPosts })(Posts);
-  

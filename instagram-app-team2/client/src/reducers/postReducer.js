@@ -11,7 +11,7 @@ export default function(state = initialState, action) {
     return {
         ...state,
         posts: action.payload
-    }
+    };
   /*   case GET_POST:
       return {
         ...state,
