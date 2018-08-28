@@ -27,7 +27,7 @@ findUserLike(likes) {
     }
   }
   render() {
-    const { post, auth } = this.props;
+    const { post, auth, showActions } = this.props;
 
     return (
       <div className="card card-body mb-3">
@@ -48,6 +48,7 @@ findUserLike(likes) {
               <img src={post.image} />
             </p>
             <p className="lead">{post.caption}</p>
+           {showActions ? (<span>
             <button
               type="button"
               onClick={this.onLikeClick.bind(this, post._id)}
@@ -67,7 +68,7 @@ findUserLike(likes) {
             >
               <i className="text-secondary fas fa-thumbs-down" />
             </button>
-            <Link to={"/post/${post._id"} className="btn btn-info mr-1">
+            <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
               Comments
             </Link>
             {post.user === auth.user.id ? (
@@ -79,12 +80,18 @@ findUserLike(likes) {
                 <i className="fas fa-times" />
               </button>
             ) : null}
+           </span>): null}
           </div>
         </div>
       </div>
     );
   }
 }
+
+PostItem.defaultProps = {
+  showActions: true
+};
+
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,

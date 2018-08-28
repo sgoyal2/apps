@@ -25,10 +25,10 @@ export const addPost = postData => dispatch => {
     );
 };
 
-//Get Post
-export const getPost = () => dispatch => {
+// Get Post
+export const getPost = id => dispatch => {
   axios
-    .get("/api/posts")
+    .get(`/api/posts/${id}`)
     .then(res =>
       dispatch({
         type: GET_POST,
@@ -37,7 +37,7 @@ export const getPost = () => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
+        type: GET_POST,
         payload: null
       })
     );

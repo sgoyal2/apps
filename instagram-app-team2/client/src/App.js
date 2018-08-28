@@ -11,7 +11,9 @@ import Login from "./components/auth/Login";
 
 import "./App.css";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 import Navbar from './components/layout/Navbar';
+
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -45,6 +47,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
         
             <Route exact path="/feed" component={Posts} />
+            <Route exact path="/post/:id" component={Post}/>
             <Footer />
           </div>
         </Router>

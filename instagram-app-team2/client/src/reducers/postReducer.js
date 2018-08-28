@@ -22,6 +22,11 @@ export default function(state = initialState, action) {
         ...state,
         posts: [action.payload, ...state.posts]
       };
+      case GET_POST:
+      return{
+        ...state, 
+        post: action.payload
+      }
       case DELETE_POST:
       return {
         ...state,
