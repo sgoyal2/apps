@@ -7,6 +7,9 @@ import {
     GET_ERRORS,
     SET_CURRENT_USER
   } from './types';
+import {logoutUser} from './authAction';
+import store from '../store';
+
 
   //Get current profile
   export const getCurrentProfile = () => dispatch => {
@@ -79,7 +82,7 @@ export const getProfiles = () => dispatch => {
 };
 
 // Delete account & profile
-export const deleteAccount = (history) => dispatch => {
+export const deleteAccount = () => dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     axios
       .delete('/api/profile')
@@ -89,7 +92,7 @@ export const deleteAccount = (history) => dispatch => {
           payload: {}
         })
       )
-      .then(res => history.push("/"))
+      .then(res => store.dispatch(logoutUser()))
       .catch(err =>
         dispatch({
           type: GET_ERRORS,

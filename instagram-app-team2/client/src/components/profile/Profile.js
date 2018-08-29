@@ -14,7 +14,7 @@ class Profile extends Component {
    }
 
   onDeleteClick(e) {
-    this.props.deleteAccount(this.props.history);
+    this.props.deleteAccount();
   }
 
   render() {
