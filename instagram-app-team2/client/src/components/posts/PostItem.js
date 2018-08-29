@@ -46,7 +46,7 @@ findUserLike(likes) {
           </div>
          <div className="col-md-10">
             <p className="lead">
-              <img src={post.image} />
+              <img src={post.image} alt="" />
             </p>
             <p className="lead">{post.caption}</p>
            {showActions ? (<span>

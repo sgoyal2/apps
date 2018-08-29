@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authAction';
-//import { clearCurrentProfile } from '../../actions/profileActions';
+import { clearCurrentProfile } from '../../actions/profileAction';
 
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
-    //this.props.clearCurrentProfile();
+    this.props.clearCurrentProfile();
     this.props.logoutUser();
   }
 
@@ -17,8 +17,20 @@ class Navbar extends Component {
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
-        
-    
+        <li className="nav-item">
+        <a
+            href="/profile"
+            className="nav-link"
+          >
+        <img
+              className="rounded-circle"
+              src={user.avatar}
+              alt={user.fullName}
+              style={{ width: '25px', marginRight: '5px' }}
+              title="You must have a Gravatar connected to your email to display an image"
+            />
+            </a>{' '}
+        </li>    
         <li className="nav-item">
           <a
             href=""
@@ -46,12 +58,20 @@ class Navbar extends Component {
       </ul>
     );
 
+    const feedAuthLink = (
+      <Link className="navbar-brand" to="/feed">
+        Instafake
+      </Link>);
+
+    const feedGuestLink =  (
+      <Link className="navbar-brand" to="/">
+        Instafake
+      </Link>) ;
+
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            Instafake
-          </Link>
+          {isAuthenticated ? feedAuthLink : feedGuestLink}
           <button
             className="navbar-toggler"
             type="button"
@@ -87,6 +107,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser })(
+export default connect(mapStateToProps, { logoutUser , clearCurrentProfile  })(
   Navbar
 );
